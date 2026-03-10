@@ -1,0 +1,103 @@
+const users = [
+  {
+    _id: "usr000000000000000000001",
+    username: "jrogers91",
+    email: "james.rogers@email.com",
+    name: "James Rogers",
+    bio: "Competitive by nature. Always up for a challenge.",
+    city: "Austin",
+    state: "TX",
+    profileImageURL: "https://i.pravatar.cc/150?img=1",
+    friendIds: ["usr000000000000000000002", "usr000000000000000000003"],
+    stats: {
+      totalCompleted: 4,
+      totalAttempted: 5,
+      points: 650,
+      currentStreak: 3,
+      longestStreak: 12,
+    },
+    challenges: [
+      {
+        refId: "aaa000000000000000000001",
+        status: "completed",
+        score: 50,
+        completedAt: "2025-03-10T14:22:00Z",
+      },
+      {
+        refId: "aaa000000000000000000002",
+        status: "in_progress",
+        score: 0,
+        completedAt: null,
+      },
+    ],
+    createdAt: "2025-01-15T08:00:00Z",
+  },
+  {
+    _id: "usr000000000000000000002",
+    username: "maya_runs",
+    email: "maya.chen@email.com",
+    name: "Maya Chen",
+    bio: "Runner. Reader. Always chasing the next goal.",
+    city: "Portland",
+    state: "OR",
+    profileImageURL: "https://i.pravatar.cc/150?img=5",
+    friendIds: ["usr000000000000000000001"],
+    stats: {
+      totalCompleted: 8,
+      totalAttempted: 9,
+      points: 1100,
+      currentStreak: 7,
+      longestStreak: 22,
+    },
+    challenges: [
+      {
+        refId: "aaa000000000000000000001",
+        status: "completed",
+        score: 50,
+        completedAt: "2025-03-08T18:45:00Z",
+      },
+      {
+        refId: "aaa000000000000000000003",
+        status: "completed",
+        score: 150,
+        completedAt: "2025-02-28T20:00:00Z",
+      },
+    ],
+    createdAt: "2025-01-20T10:30:00Z",
+  },
+  {
+    _id: "usr000000000000000000003",
+    username: "dan_the_man",
+    email: "daniel.price@email.com",
+    name: "Daniel Price",
+    bio: "Just here to beat James.",
+    city: "Nashville",
+    state: "TN",
+    profileImageURL: "https://i.pravatar.cc/150?img=8",
+    friendIds: ["usr000000000000000000001"],
+    stats: {
+      totalCompleted: 1,
+      totalAttempted: 3,
+      points: 50,
+      currentStreak: 0,
+      longestStreak: 5,
+    },
+    challenges: [
+      {
+        refId: "aaa000000000000000000002",
+        status: "failed",
+        score: 0,
+        completedAt: null,
+      },
+      {
+        refId: "aaa000000000000000000001",
+        status: "completed",
+        score: 50,
+        completedAt: "2025-03-05T16:30:00Z",
+      },
+    ],
+    createdAt: "2025-02-01T07:15:00Z",
+  },
+];
+
+export default users;
