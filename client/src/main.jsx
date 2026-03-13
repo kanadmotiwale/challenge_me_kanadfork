@@ -7,7 +7,6 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Index from "./pages/Index.jsx";
-
 import Dashboard from "./pages/Dashboard.jsx";
 // import BaseTemplate from "./pages/BaseTemplate.jsx";
 // import LoginPage from "./pages/LoginPage.jsx";
