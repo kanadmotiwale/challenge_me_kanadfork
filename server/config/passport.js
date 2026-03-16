@@ -9,10 +9,12 @@ export default function configurePassport(db) {
       { usernameField: "email", passwordField: "password" },
       async (email, password, done) => {
         try {
+          // Try to find the user in MongoDB based on their email
           const user = await db.collection("Users").findOne({ email });
           if (!user)
             return done(null, false, { message: "User or password incorrect" });
 
+          // If you find the user then compare the password to the hashed password
           const isValid = await bcrypt.compare(password, user.passwordHash);
           if (!isValid)
             return done(null, false, { message: "User or password incorrect" });

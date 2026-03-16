@@ -1,3 +1,5 @@
+// This is the password seed script for all the users in the DB
+
 import bcrypt from "bcrypt";
 import { MongoClient } from "mongodb";
 import * as dotenv from "dotenv";

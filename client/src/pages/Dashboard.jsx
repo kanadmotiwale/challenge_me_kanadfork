@@ -17,6 +17,8 @@ export default function IndexPage() {
 
   useEffect(() => {
     const fetchUser = async () => {
+      // Send a get request for the current user
+      // We send the credentials becuase it'll send the cookie
       const res = await fetch('/api/auth/user', { credentials: 'include' });
       if (res.ok) {
         const data = await res.json();
@@ -24,8 +26,9 @@ export default function IndexPage() {
       }
     };
     fetchUser();
-  }, []);
+  }, []); // The empty dependency means that this should fetch the user ONLY ONCE on page load
 
+  // TODO: This is all boilerplate from class, consider removal
   const reloadUsers = useCallback(async () => {
     const res = await fetch(`/api/users?q=${query}`);
     if (!res.ok) {

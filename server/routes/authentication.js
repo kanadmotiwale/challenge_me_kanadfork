@@ -1,15 +1,15 @@
 import express from "express";
+// bcrypt used in class
 import bcrypt from "bcrypt";
 import passport from "passport";
 
+// used in class
 import { isAuthenticated } from "../middleware/auth.js";
-
-// import { findUserByEmail, createUser } from "../models/users.js";
 
 const router = express.Router();
 
 // Register endpoint
-// TODO: do this after login
+// TODO: do this after login is working
 // router.post("/register", async (req, res) => {
 //   try {
 //     const { email, password, name } = req.body;
@@ -47,21 +47,33 @@ const router = express.Router();
 //   }
 // });
 
-// LOGIN
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/dashboard",
-    failureRedirect: "/login?msg='Invalid credentials'",
-  })
-);
+// POST - LOGIN
+router.post("/login", (req, res, next) => {
+  // The email and password come in as the body
+  passport.authenticate("local", (err, user) => {
+    // Error if say DB is down
+    if (err) return next(err);
+    // Error if there's no user
+    if (!user) return res.status(401).json({ message: "Invalid credentials" });
+    // Success
+    // Built in function that will call serializeUser which creates the session and sends cookie to the browser
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+      res.json({ message: "Login successful", user });
+    });
+  })(req, res, next);
+});
 
-// Get current user (protected route)
-router.get("/user", isAuthenticated, (req, res) => {
-  delete req.user.passwordHash;
+// GET - CURRENT USER
+router.get("/user", (req, res) => {
+  // Express will read the cookie with passport running deserializer to lookup the user by _id stored in session
+  // notice that isAuthenticated is called
+  if (!req.isAuthenticated())
+    return res.status(401).json({ message: "Not logged in" });
   res.json({ user: req.user });
 });
 
+// TODO: Logout functionality
 // Logout endpoint
 router.post("/logout", (req, res) => {
   req.logout((err) => {

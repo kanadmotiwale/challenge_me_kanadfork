@@ -11,7 +11,7 @@ export default function Index() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // TODO: POST /api/auth/login
+    // DONE: POST /api/auth/login
     const res = await fetch('/api/auth/login', {
       method: 'POST',
       credentials: 'include',
@@ -20,6 +20,8 @@ export default function Index() {
     });
 
     if (res.ok) {
+      const data = await res.json();
+      console.log(data.message);
       navigate('/dashboard');
     } else {
       const { message } = await res.json();
