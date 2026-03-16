@@ -37,6 +37,44 @@ function UsersMongoDB({
     }
   };
 
+  // Register endpoint
+  // router.post("/register", async (req, res) => {
+  //   try {
+  //     const { email, password, name } = req.body;
+  //
+  //     // Validation
+  //     if (!email || !password || !name) {
+  //       return res.status(400).json({ message: "All fields are required" });
+  //     }
+  //
+  //     // Check if user already exists
+  //     const existingUser = findUserByEmail(email);
+  //     if (existingUser) {
+  //       return res.status(400).json({ message: "User already exists" });
+  //     }
+  //
+  //     // Hash password
+  //     const hashedPassword = await bcrypt.hash(password, 10);
+  //
+  //     // Create user
+  //     const user = createUser({
+  //       email,
+  //       passwordHash: hashedPassword,
+  //       name,
+  //     });
+  //
+  //     // Don't send password back
+  //     delete user.password;
+  //
+  //     res.status(201).json({
+  //       message: "User created successfully",
+  //       user,
+  //     });
+  //   } catch (error) {
+  //     res.status(500).json({ message: "Server error", error: error.message });
+  //   }
+  // });
+
   //   me.createIssue = async (issue) => {
   //     const issues = await connect();
   //     try {
