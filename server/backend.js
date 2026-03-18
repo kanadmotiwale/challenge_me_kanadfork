@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { MongoClient } from "mongodb";
 import configurePassport from "./config/passport.js";
+import * as dotenv from "dotenv";
 
 // Routes
 import users from "./routes/users.js";
@@ -13,7 +14,6 @@ import challengesRouter from "./routes/challenges.js";
 import profileRouter from "./routes/profile.js";
 import seedRouter from "./routes/seed.js";
 
-import * as dotenv from "dotenv";
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -58,6 +58,10 @@ app.use("/api/seed", seedRouter);
 
 app.use("/", express.static("./client/dist"));
 
+app.use("/api/users", users);
+app.use("/api/auth", authRouter);
+
+app.use("/", express.static("./client/dist"));
 app.get("*splat", (req, res) => {
   res.sendFile("index.html", {
     root: join(__dirname, "./client/dist"),
