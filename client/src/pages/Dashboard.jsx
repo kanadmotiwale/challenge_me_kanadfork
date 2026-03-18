@@ -51,7 +51,7 @@ export default function IndexPage() {
 
   return (
     <>
-      <h1>Index Page</h1>
+      <h1>Your Challenge Dashboard</h1>
       <ProfileInfo user={user} />
       <section>
         <Row>

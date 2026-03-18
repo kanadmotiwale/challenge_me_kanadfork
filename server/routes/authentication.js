@@ -38,11 +38,22 @@ router.post("/register", async (req, res) => {
     const newUser = await userDB.createUser({
       username,
       name,
-      profileImageUrl,
+      profileImageURL: profileImageUrl, // note the casing in your schema
       email,
       passwordHash: hashedPassword,
+      bio: "",
       city,
       state,
+      friendIds: [],
+      createdAt: new Date(),
+      stats: {
+        totalCompleted: 0,
+        totalAttempted: 0,
+        points: 0,
+        currentStreak: 0,
+        longestStreak: 0,
+      },
+      challenges: [],
     });
 
     // Don't send password back

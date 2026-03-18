@@ -132,7 +132,7 @@ export default function Index() {
               <div className="mb-3">
                 <label className="form-label">Profile Image URL</label>
                 <input type="text" name="profileImageUrl" className="form-control"
-                  value={registerUser.profileImageUrl} onChange={handleChange} required />
+                  value={registerUser.profileImageUrl} onChange={handleChange} />
               </div>
               <div className="mb-3">
                 <label className="form-label">Email</label>
