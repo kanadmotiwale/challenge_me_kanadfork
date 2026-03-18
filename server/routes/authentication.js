@@ -2,50 +2,60 @@ import express from "express";
 // bcrypt used in class
 import bcrypt from "bcrypt";
 import passport from "passport";
+import userDB from "../db/UsersMongoDB.js";
 
 // used in class
 import { isAuthenticated } from "../middleware/auth.js";
 
 const router = express.Router();
 
-// Register endpoint
-// TODO: do this after login is working
-// router.post("/register", async (req, res) => {
-//   try {
-//     const { email, password, name } = req.body;
-//
-//     // Validation
-//     if (!email || !password || !name) {
-//       return res.status(400).json({ message: "All fields are required" });
-//     }
-//
-//     // Check if user already exists
-//     const existingUser = findUserByEmail(email);
-//     if (existingUser) {
-//       return res.status(400).json({ message: "User already exists" });
-//     }
-//
-//     // Hash password
-//     const hashedPassword = await bcrypt.hash(password, 10);
-//
-//     // Create user
-//     const user = createUser({
-//       email,
-//       passwordHash: hashedPassword,
-//       name,
-//     });
-//
-//     // Don't send password back
-//     delete user.password;
-//
-//     res.status(201).json({
-//       message: "User created successfully",
-//       user,
-//     });
-//   } catch (error) {
-//     res.status(500).json({ message: "Server error", error: error.message });
-//   }
-// });
+// POST - REGEISTER
+// DONE do this after login is working
+router.post("/register", async (req, res) => {
+  // 1. Check for existing user
+  // 2. Hash password
+  // 3. Save new user
+  // 4. Redirect or respond
+  try {
+    const { username, name, profileImageUrl, email, password, city, state } =
+      req.body;
+    // Validation
+    //  Check the DB if it's already there?
+    if (!email || !password || !username || !name) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    // Check if user already exists
+    const existingUser = await userDB.findUserByEmail(email);
+    if (existingUser) {
+      // State conflict error
+      return res.status(409).json({ message: "User already exists" });
+    }
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create user update this
+    const newUser = await userDB.createUser({
+      username,
+      name,
+      profileImageUrl,
+      email,
+      passwordHash: hashedPassword,
+      city,
+      state,
+    });
+
+    // Don't send password back
+    delete newUser.passwordHash;
+
+    res.status(201).json({
+      message: "User created successfully (password removed)",
+      user: newUser,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
 
 // POST - LOGIN
 router.post("/login", (req, res, next) => {

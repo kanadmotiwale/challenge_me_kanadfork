@@ -7,34 +7,58 @@ export default function Index() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [registerUser, setRegisterUser] = useState({
+    username: "",
+    name: "",
+    profileImageUrl: "",
+    email: "",
+    password: "",
+    city: "",
+    state: "",
+  });
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  // Change the registered user data
+  const handleChange = (e) => {
+    setRegisterUser({ ...registerUser, [e.target.name]: e.target.value });
+  };
 
-    // DONE: POST /api/auth/login
+  // Make loginUser a callable function so that it can be called by EITHER event handler 
+  const loginUser = async (email, password) => {
     const res = await fetch('/api/auth/login', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     });
-
     if (res.ok) {
-      const data = await res.json();
-      console.log(data.message);
       navigate('/dashboard');
     } else {
       const { message } = await res.json();
-      setError(message); // show inline error
+      setError(message);
     }
-  }
-    ;
+  };
 
-  const handleRegister = (e) => {
+  // LOGIN Event Handler 
+  const handleLogin = async (e) => {
     e.preventDefault();
+    await loginUser(email, password);
+  };
 
-    // TODO: POST /api/auth/register
-    console.log()
+  // REGISTER Event Handler 
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const res = await fetch('/api/auth/register', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(registerUser),
+    });
+    if (res.ok) {
+      await loginUser(registerUser.email, registerUser.password);
+    } else {
+      const { message } = await res.json();
+      setError(message);
+    }
   };
 
   return (
@@ -96,32 +120,47 @@ export default function Index() {
           ) : (
             <form id="register-form" onSubmit={handleRegister}>
               <div className="mb-3">
-                <label className="form-label">username</label>
-                <input type="text" className="form-control" required />
+                <label className="form-label">Username</label>
+                <input type="text" name="username" className="form-control"
+                  value={registerUser.username} onChange={handleChange} required />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Name</label>
+                <input type="text" name="name" className="form-control"
+                  value={registerUser.name} onChange={handleChange} required />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Profile Image URL</label>
+                <input type="text" name="profileImageUrl" className="form-control"
+                  value={registerUser.profileImageUrl} onChange={handleChange} required />
               </div>
               <div className="mb-3">
                 <label className="form-label">Email</label>
-                <input type="email" className="form-control" required />
+                <input type="text" name="email" className="form-control"
+                  value={registerUser.email} onChange={handleChange} required />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Password</label>
+                <input type="password" name="password" className="form-control"
+                  value={registerUser.password} onChange={handleChange} required />
               </div>
               <div className="row mb-3">
                 <div className="col">
                   <label className="form-label">City</label>
-                  <input type="text" className="form-control" />
+                  <input type="text" name="city" className="form-control"
+                    value={registerUser.city} onChange={handleChange} />
                 </div>
                 <div className="col">
                   <label className="form-label">State</label>
-                  <input type="text" className="form-control" maxLength={2} placeholder="MA" />
+                  <input type="text" name="state" className="form-control"
+                    value={registerUser.state} onChange={handleChange}
+                    maxLength={2} placeholder="MA" />
                 </div>
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Password</label>
-                <input type="password" className="form-control" required />
               </div>
               <button type="submit" className="btn btn-primary w-100">
                 Create account
               </button>
-            </form>
-          )}
+            </form>)}
         </div>
       </div >
     </div >

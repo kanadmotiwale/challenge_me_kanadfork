@@ -20,6 +20,30 @@ function UsersMongoDB({
     return collection;
   };
 
+  // Check if User is in the DB
+  me.findUserByEmail = async (email) => {
+    const users = await connect();
+    try {
+      const res = users.findOne({ email });
+      return res;
+    } catch (err) {
+      console.error("Error searching for user by email", err);
+      throw err;
+    }
+  };
+
+  // CREATE - Create User
+  me.createUser = async (userData) => {
+    const users = await connect();
+    try {
+      const result = await users.insertOne(userData);
+      return { _id: result.insertedId, ...userData };
+    } catch (err) {
+      console.error("Error creating user", err);
+      throw err;
+    }
+  };
+
   me.getUsers = async ({ query = {}, pageSize = 20, page = 1 } = {}) => {
     const users = await connect();
     try {
