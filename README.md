@@ -156,10 +156,8 @@ Each user has a profile that tracks their challenge history, wins, and standing 
 | `POST` | `/api/auth/login` | Log in |
 | `POST` | `/api/auth/logout` | Log out |
 | `GET` | `/api/auth/user` | Get currently logged-in user |
-
 | `GET` | `/api/users` | Get all users |
 | `GET` | `/api/users/:id` | Get a user by ID |
-
 | `GET` | `/api/challenges` | Get all challenges (with creator info) |
 | `GET` | `/api/challenges/:id` | Get a single challenge |
 | `POST` | `/api/challenges` | Create a new challenge |
