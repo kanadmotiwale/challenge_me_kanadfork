@@ -1,0 +1,16 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.nav-logo {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--space-sm);
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EditProfileModal from "./EditProfileModal";
+import EditProfileModal from "../EditProfileModal";
 import "./ProfileInfo.css";
 
 export default function ProfileInfo({ user, onUserUpdate }) {

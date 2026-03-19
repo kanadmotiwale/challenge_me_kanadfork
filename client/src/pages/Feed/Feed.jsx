@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ChallengeCard from "../components/ChallengeCard";
-import { personalizeChallenges } from "../utils/personalization";
+import ChallengeCard from "../../components/ui/ChallengeCard/ChallengeCard";
+import { personalizeChallenges } from "../../utils/personalization";
 
 export default function Feed() {
     const [challenges, setChallenges] = useState([]);

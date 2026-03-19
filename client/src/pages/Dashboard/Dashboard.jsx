@@ -7,9 +7,9 @@ import Col from "react-bootstrap/Col";
 // import ApartmentListingsList from "../components/ApartmentListingsList.jsx";
 // import CreateListingForm from "../components/CreateListingForm.jsx";
 
-import UserList from "../components/UserList.jsx"
-import ProfileInfo from "../components/ProfileInfo.jsx"
-import Navbar from "../components/Navbar";
+import UserList from "../../components/UserList.jsx"
+import ProfileInfo from "../../components/ProfileInfo/ProfileInfo.jsx"
+import Navbar from "../../components/ui/Navbar/Navbar.jsx";
 
 export default function IndexPage() {
   const [user, setUser] = useState(null)
