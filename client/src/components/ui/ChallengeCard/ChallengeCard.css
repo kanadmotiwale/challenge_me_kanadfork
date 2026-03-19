@@ -1,64 +1,49 @@
-.challenge-click {
-    cursor: pointer;
+.challenge-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 16px;
 }
 
-/* HEADER */
 .challenge-header {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: 6px;
 }
 
-.challenge-title-block h3 {
+.challenge-title {
     margin: 0;
     font-size: 18px;
 }
 
-/* creator */
-.challenge-meta {
+.challenge-creator {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     font-size: 12px;
     color: var(--color-muted);
 }
 
-/* description */
 .challenge-desc {
-    margin-top: 2px;
-    font-size: 14px;
     color: var(--color-muted);
+    font-size: 14px;
+    min-height: 40px;
 }
 
-/* TAGS */
 .challenge-tags {
     display: flex;
     gap: 6px;
-    margin-top: var(--space-sm);
     flex-wrap: wrap;
 }
 
-/* FOOTER */
 .challenge-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: var(--space-md);
+    margin-top: auto;
 }
 
-/* stats */
-.challenge-stats {
-    font-size: 13px;
-    color: var(--color-muted);
-}
-
-/* actions */
 .challenge-actions {
     display: flex;
-    gap: var(--space-sm);
-}
-
-/* hover polish */
-.card-hover:hover {
-    transform: translateY(-3px);
+    gap: 6px;
 }

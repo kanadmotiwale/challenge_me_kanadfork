@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ChallengeCard from "../../components/ui/ChallengeCard/ChallengeCard";
 import Chip from "../../components/ui/Chip/Chip";
+import Button from "../../components/ui/Button/Button";
 import CreateChallengeModal from "../../components/CreateChallengeModal";
 
 import { useUser } from "../../context/UserContext";
@@ -58,10 +59,6 @@ export default function Feed() {
     }));
   };
 
-  if (filtered.length === 0) {
-    return <div>No Challenges found.</div>;
-  }
-
   return (
     <div className="feed-page">
       <input
@@ -87,12 +84,9 @@ export default function Feed() {
             />
           ))}
         </div>
-        <button
-          className="btn btn-sm btn-outline-primary"
-          onClick={() => setShowCreate(true)}
-        >
+        <Button size="sm" variant="primary" onClick={() => setShowCreate(true)}>
           Create
-        </button>
+        </Button>
       </div>
 
       {showCreate && (
@@ -100,38 +94,49 @@ export default function Feed() {
       )}
 
       <div className="feed-grid">
-        {paginated.map((c) => {
-          const saved = profile?.savedChallenges?.some(
-            (sc) => sc.challengeId.toString() === c._id
-          );
+        {filtered.length === 0 ? (
+          <div className="empty-state">No challenges match your filter.</div>
+        ) : (
+          paginated.map((c) => {
+            const saved = profile?.savedChallenges?.some(
+              (sc) => sc.challengeId.toString() === c._id
+            );
 
-          const liked = likedIds.includes(c._id);
+            const liked = likedIds.includes(c._id);
 
-          return (
-            <ChallengeCard
-              key={c._id}
-              challenge={{ ...c, saved, liked }}
-              onImport={importChallenge}
-            />
-          );
-        })}
+            return (
+              <ChallengeCard
+                key={c._id}
+                challenge={{ ...c, saved, liked }}
+                onImport={importChallenge}
+              />
+            );
+          })
+        )}
       </div>
 
       <div className="pagination">
-        <button disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
+        <Button
+          variant="soft"
+          size="sm"
+          disabled={page === 1}
+          onClick={() => setPage((p) => p - 1)}
+        >
           Prev
-        </button>
+        </Button>
 
         <span>
           {page} / {totalPages || 1}
         </span>
 
-        <button
+        <Button
+          variant="soft"
+          size="sm"
           disabled={page === totalPages}
           onClick={() => setPage((p) => p + 1)}
         >
           Next
-        </button>
+        </Button>
       </div>
     </div>
   );
