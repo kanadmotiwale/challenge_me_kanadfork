@@ -60,6 +60,17 @@ function UsersMongoDB({
     }
   };
 
+  // DELETE - Delete User
+  me.deleteUser = async (userId) => {
+    const users = await connect();
+    try {
+      return await users.deleteOne({ _id: new ObjectId(userId) });
+    } catch (err) {
+      console.error("Error deleting issue from the DB", err);
+      throw err;
+    }
+  };
+
   // TODO: Delete legacy starter code from apartment
   me.getUsers = async ({ query = {}, pageSize = 20, page = 1 } = {}) => {
     const users = await connect();
@@ -78,92 +89,6 @@ function UsersMongoDB({
     }
   };
 
-  // Register endpoint
-  // router.post("/register", async (req, res) => {
-  //   try {
-  //     const { email, password, name } = req.body;
-  //
-  //     // Validation
-  //     if (!email || !password || !name) {
-  //       return res.status(400).json({ message: "All fields are required" });
-  //     }
-  //
-  //     // Check if user already exists
-  //     const existingUser = findUserByEmail(email);
-  //     if (existingUser) {
-  //       return res.status(400).json({ message: "User already exists" });
-  //     }
-  //
-  //     // Hash password
-  //     const hashedPassword = await bcrypt.hash(password, 10);
-  //
-  //     // Create user
-  //     const user = createUser({
-  //       email,
-  //       passwordHash: hashedPassword,
-  //       name,
-  //     });
-  //
-  //     // Don't send password back
-  //     delete user.password;
-  //
-  //     res.status(201).json({
-  //       message: "User created successfully",
-  //       user,
-  //     });
-  //   } catch (error) {
-  //     res.status(500).json({ message: "Server error", error: error.message });
-  //   }
-  // });
-
-  //   me.createIssue = async (issue) => {
-  //     const issues = await connect();
-  //     try {
-  //       return await issues.insertOne(issue);
-  //     } catch (err) {
-  //       console.error("Error inserting issue into MongoDB", err);
-  //       throw err;
-  //     }
-  //   };
-  //
-  //   me.removeIssue = async (issueId) => {
-  //     const issues = await connect();
-  //     try {
-  //       return await issues.deleteOne({ _id: new ObjectId(issueId) });
-  //     } catch (err) {
-  //       console.error("Error deleting issue from the DB", err);
-  //       throw err;
-  //     }
-  //   };
-  //
-  //   me.updateIssueDB = async (issueId, updatedData) => {
-  //     const issues = await connect();
-  //     try {
-  //       return await issues.updateOne(
-  //         { _id: new ObjectId(issueId) },
-  //         { $set: { ...updatedData, modifiedAt: new Date() } }
-  //       );
-  //     } catch (err) {
-  //       console.error("MongoDB Update Error:", err);
-  //       throw err;
-  //     }
-  //   };
-  //
-  //   // MARK - Counts from DB
-  //   me.getCategoryCounts = async () => {
-  //     const issues = await connect();
-  //     try {
-  //       // do an aggregation function within the database
-  //       const data = await issues
-  //         .aggregate([{ $group: { _id: "$category", count: { $sum: 1 } } }])
-  //         .toArray();
-  //       return data;
-  //     } catch (err) {
-  //       console.error("Error fetching category counts", err);
-  //       throw err;
-  //     }
-  //   };
-  //
   return me;
 }
 

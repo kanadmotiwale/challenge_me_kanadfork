@@ -43,14 +43,34 @@ router.put("/:id", async (req, res) => {
 
 // DELETE /api/users/:id
 router.delete("/:id", async (req, res) => {
+  console.log("DELETE hit", req.params.id);
+  console.log("req.user", req.user);
   // Ensure the user has permission to delete
   if (!req.user || req.user._id.toString() !== req.params.id) {
     return res.status(403).json({ message: "Forbidden" });
   }
   try {
-    const userDeletedStatus = await usersDB.deleteUser(req.params.id);
-    return userDeletedStatus;
+    const result = await usersDB.deleteUser(req.params.id);
+    console.log("deleteUser result:", result);
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    req.logout((err) => {
+      if (err) {
+        console.error("Logout error:", err);
+        return res.status(500).json({ message: "Logout failed" });
+      }
+      req.session.destroy((err) => {
+        if (err) {
+          console.error("Session destroy error:", err);
+          return res.status(500).json({ message: "Session error" });
+        }
+        res.clearCookie("connect.sid");
+        return res.json({ message: "Account deleted" });
+      });
+    });
   } catch (err) {
+    console.error("Delete user error: ", err);
     res.status(500).json({ message: "Server error" });
   }
 });
