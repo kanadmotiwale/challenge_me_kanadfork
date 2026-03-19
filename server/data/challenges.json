@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Back Bay Matcha Crawl",
+    "description": "Visit 3 cozy matcha cafes and rate your favorite",
+    "category": "food",
+    "neighborhood": "Back Bay",
+    "timeWindow": "weekend",
+    "steps": [
+      { "id": "s1", "title": "Try iced matcha", "points": 10 },
+      { "id": "s2", "title": "Take aesthetic photo", "points": 15 },
+      { "id": "s3", "title": "Rate vibe", "points": 10 }
+    ],
+    "createdBy": null,
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "stats": { "likes": 0, "saves": 0, "completions": 0 }
+  }
+]

@@ -1,0 +1,49 @@
+.challenge-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 16px;
+}
+
+.challenge-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.challenge-title {
+    margin: 0;
+    font-size: 18px;
+}
+
+.challenge-creator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--color-muted);
+}
+
+.challenge-desc {
+    color: var(--color-muted);
+    font-size: 14px;
+    min-height: 40px;
+}
+
+.challenge-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.challenge-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.challenge-actions {
+    display: flex;
+    gap: 6px;
+}
