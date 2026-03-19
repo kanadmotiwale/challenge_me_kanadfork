@@ -2,9 +2,12 @@
     padding: 8px 16px;
     border-radius: var(--radius-pill);
     font-size: 14px;
-    transition: 0.2s ease;
+    transition: all 0.2s ease;
+
+    box-shadow: var(--shadow-soft);
 }
 
+/* PRIMARY */
 .btn-primary {
     background: var(--color-primary);
     color: white;
@@ -14,12 +17,19 @@
     background: var(--color-primary-dark);
 }
 
+/* SOFT (MOST IMPORTANT FOR YOUR THEME) */
 .btn-soft {
     background: var(--color-surface-soft);
     color: var(--color-primary-dark);
+
+    box-shadow: var(--shadow-inner);
 }
 
-/* SECONDARY */
+.btn-soft:hover {
+    background: var(--color-surface);
+}
+
+/* SECONDARY (same family as soft but slightly stronger) */
 .btn-secondary {
     background: var(--color-surface-soft);
     color: var(--color-primary-dark);
@@ -29,14 +39,21 @@
     background: var(--color-surface);
 }
 
+/* GHOST */
+.btn-ghost {
+    background: transparent;
+    color: var(--color-primary-dark);
+    box-shadow: none;
+}
+
 /* DANGER */
 .btn-danger {
     background: var(--color-danger);
     color: white;
 }
 
-/* GHOST */
-.btn-ghost {
-    background: transparent;
-    color: var(--color-primary-dark);
+/* PRESSED STATE */
+.btn:active {
+    transform: scale(0.97);
+    box-shadow: var(--shadow-inner);
 }
