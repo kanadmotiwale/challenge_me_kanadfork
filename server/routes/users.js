@@ -41,4 +41,18 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// DELETE /api/users/:id
+router.delete("/:id", async (req, res) => {
+  // Ensure the user has permission to delete
+  if (!req.user || req.user._id.toString() !== req.params.id) {
+    return res.status(403).json({ message: "Forbidden" });
+  }
+  try {
+    const userDeletedStatus = await usersDB.deleteUser(req.params.id);
+    return userDeletedStatus;
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 export default router;

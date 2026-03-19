@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DangerZoneModal from "./DeleteModal";
 
 const fields = [
   { name: "username", label: "Username", type: "text" },
@@ -20,6 +21,7 @@ export default function EditProfileModal({ user, onClose, onUserUpdate }) {
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showDangerZone, setShowDangerZone] = useState(false)
 
   const handleChange = (e) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -101,7 +103,7 @@ export default function EditProfileModal({ user, onClose, onUserUpdate }) {
                   type="button"
                   className="btn btn-link text-danger p-0"
                   onClick={() => {
-                    // TODO: wire up delete account flow
+                    setShowDangerZone(true)
                   }}
                 >
                   Delete Account
@@ -110,7 +112,10 @@ export default function EditProfileModal({ user, onClose, onUserUpdate }) {
                   <button
                     type="button"
                     className="btn btn-secondary"
-                    onClick={onClose}
+                    onClick={() => {
+                      setShowDangerZone(true);
+                      onClose();
+                    }}
                     disabled={loading}
                   >
                     Cancel
@@ -127,7 +132,14 @@ export default function EditProfileModal({ user, onClose, onUserUpdate }) {
             </form>
           </div>
         </div>
-      </div>
-    </div>
+      </div >
+      {showDangerZone && (
+        <DangerZoneModal
+          user={user}
+          onClose={() => setShowDangerZone(false)}
+        />
+      )
+      }
+    </div >
   );
 }
