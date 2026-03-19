@@ -1,4 +1,5 @@
 # 🏆 Challenge Me
+
 ![Status](https://img.shields.io/badge/Status-In%20Development-orange)
 ![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
@@ -150,13 +151,13 @@ Each user has a profile that tracks their challenge history, wins, and standing 
 
 <h2 name="api-overview"> 🔌 API Overview
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
+| Method | Endpoint             | Description         |
+| ------ | -------------------- | ------------------- |
 | `POST` | `/api/auth/register` | Register a new user |
-| `POST` | `/api/auth/login` | Log in |
-| `POST` | `/api/auth/logout` | Log out |
-| `GET` | `/api/users` | Get all users |
-| `GET` | `/api/users/:id` | Get a user by ID |
+| `POST` | `/api/auth/login`    | Log in              |
+| `POST` | `/api/auth/logout`   | Log out             |
+| `GET`  | `/api/users`         | Get all users       |
+| `GET`  | `/api/users/:id`     | Get a user by ID    |
 
 ---
 
@@ -177,6 +178,7 @@ Each user has a profile that tracks their challenge history, wins, and standing 
 ### How AI Was Used
 
 A combination of Claude and Gemini were used throughout development as learning and debugging aids:
+
 - Structuring the Passport.js authentication flow and understanding session lifecycle as well as how to leverage session state
 - Assistance with React component and state management architecture
 - Deployment configuration on Render
@@ -191,19 +193,22 @@ AI was used as a **development accelerator**, not a shortcut. All generated code
 
 <h2 name="authors-and-course-information"> 👨‍💻 Authors and Course Information
    
-## Authors 
+## Authors
 
 **Logan Matheny**
+
 - 🎓 Graduate Student, M.S. Computer Science — Northeastern University
 - 🪖 West Point Graduate and U.S. Army Veteran
 - 💼 [LinkedIn](https://www.linkedin.com/in/logan-matheny/)
 - 🐙 [GitHub](https://github.com/loganpaulmatheny)
 
 **Pratyusha Jaitly**
+
 - 🎓 Graduate Student, M.S. Computer Science — Northeastern University
 - 🐙 [GitHub](https://github.com/pratyushajaitly)
 
 ## Course Info
+
 - **Course**: CS5610 Web Development
 - **Semester**: Spring 2026
 - **Instructor**: John Guerra Gomez
