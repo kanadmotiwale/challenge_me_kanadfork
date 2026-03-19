@@ -25,11 +25,22 @@
     color: var(--color-muted);
 }
 
-/* reuse feed grid */
 .feed-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-md);
+    gap: var(--space-lg);
+}
+
+@media (max-width: 900px) {
+    .feed-grid {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 500px) {
+    .feed-grid {
+        column-count: 1;
+    }
 }
 
 

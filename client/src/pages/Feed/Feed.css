@@ -6,9 +6,9 @@
 .filter-bar {
   display: flex;
   gap: var(--space-sm);
-  overflow-x: auto;
-  padding-bottom: 4px;
-  align-items: center;
+  flex-wrap: wrap;
+
+  padding: 4px 0;
 }
 
 /* hide scrollbar (clean look) */
@@ -30,22 +30,25 @@
 .feed-page {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
 }
 
-/* Pinterest style grid */
 .feed-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--space-lg);
+  column-count: 3;
+  column-gap: var(--space-md);
 }
 
-/* filter bar spacing */
-.filter-bar {
-  display: flex;
-  gap: var(--space-sm);
-  flex-wrap: wrap;
+@media (max-width: 900px) {
+  .feed-grid {
+    column-count: 2;
+  }
 }
+
+@media (max-width: 500px) {
+  .feed-grid {
+    column-count: 1;
+  }
+}
+
 
 
 .search-input {
@@ -54,6 +57,7 @@
   border: none;
   box-shadow: var(--shadow-inner);
   width: 100%;
+  margin-bottom: var(--space-sm);
 }
 
 .pagination {
@@ -66,4 +70,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: var(--color-muted);
 }

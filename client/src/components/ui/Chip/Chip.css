@@ -1,15 +1,20 @@
 .chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     padding: 6px 14px;
     border-radius: var(--radius-pill);
 
     background: var(--color-surface-soft);
-    box-shadow: var(--shadow-inner);
 
     cursor: pointer;
-    transition: 0.15s;
+    transition: all 0.18s ease;
 
     white-space: nowrap;
-    /* prevents breaking */
+
+    width: fit-content;
+    flex: 0 0 auto;
 }
 
 /* active */
