@@ -7,6 +7,7 @@ export default function StepProgress({ steps, challengeId }) {
   const [progress, setProgress] = useState([]);
   const [proof, setProof] = useState({});
   const [animating, setAnimating] = useState(null);
+  const [isEditable, setIsEditable] = useState(false);
 
   useEffect(() => {
     const loadProfile = async () => {
@@ -17,11 +18,14 @@ export default function StepProgress({ steps, challengeId }) {
       const data = await res.json();
 
       const saved = data.savedChallenges?.find(
-        (c) => c.challengeId === challengeId
+        (c) => c.challengeId.toString() === challengeId
       );
 
       if (saved) {
         setProgress(saved.progress);
+        setIsEditable(true);
+      } else {
+        setIsEditable(false);
       }
     };
 
@@ -33,10 +37,13 @@ export default function StepProgress({ steps, challengeId }) {
   };
 
   const toggle = (id) => {
+    if (!isEditable) return;
     setExpanded(expanded === id ? null : id);
   };
 
   const completeStep = async (stepId) => {
+    if (!isEditable) return;
+
     setAnimating(stepId);
 
     await fetch(`/api/profile/complete-step/${challengeId}`, {
@@ -62,39 +69,56 @@ export default function StepProgress({ steps, challengeId }) {
 
   return (
     <div className="steps">
+
+      {!isEditable && (
+        <div className="steps-locked">
+          Import this challenge to start tracking progress
+        </div>
+      )}
+
       {steps.map((step, i) => {
         const done = isCompleted(step.id);
 
         return (
           <div key={step.id} className="step-row">
+
+            {/* LEFT TIMELINE */}
             <div className="step-left">
               <div
-                className={`step-dot ${done ? "done" : ""} ${animating === step.id ? "pulse" : ""
-                  }`}
+                className={`step-dot 
+                  ${done ? "done" : ""} 
+                  ${animating === step.id ? "pulse" : ""}`}
               >
                 {done ? "✓" : i + 1}
               </div>
 
               {i < steps.length - 1 && (
                 <div
-                  className={`step-connector ${isCompleted(steps[i].id) ? "done" : ""
-                    }`}
+                  className={`step-connector ${
+                    isCompleted(step.id) ? "done" : ""
+                  }`}
                 />
               )}
             </div>
 
-            <div style={{ flex: 1 }}>
+            {/* CONTENT */}
+            <div className="step-content">
+
               <div
-                className="step-title"
+                className={`step-title ${
+                  !isEditable ? "disabled" : ""
+                }`}
                 onClick={() => toggle(step.id)}
               >
-                {step.title} (+{step.points} XP)
+                {step.title}
+                <span className="xp">+{step.points} XP</span>
               </div>
 
-              {expanded === step.id && (
+              {expanded === step.id && isEditable && (
                 <div className="step-expand">
+
                   <input
-                    placeholder="Proof link"
+                    placeholder="Add proof link (optional)"
                     value={proof[step.id] || ""}
                     onChange={(e) =>
                       setProof({
@@ -105,13 +129,18 @@ export default function StepProgress({ steps, challengeId }) {
                     className="input"
                   />
 
-                  <div style={{ marginTop: 10 }}>
-                    <Button onClick={() => completeStep(step.id)}>
+                  <div className="step-actions">
+                    <Button
+                      variant="primary"
+                      onClick={() => completeStep(step.id)}
+                    >
                       Complete Step
                     </Button>
                   </div>
+
                 </div>
               )}
+
             </div>
           </div>
         );
