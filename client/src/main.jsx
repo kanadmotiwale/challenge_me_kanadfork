@@ -3,10 +3,15 @@ import { createRoot } from "react-dom/client";
 
 import { BrowserRouter, Routes, Route } from "react-router";
 
+import Feed from "./pages/Feed/Feed.jsx";
+import Profile from "./pages/Profile";
+import ChallengeDetail from "./pages/ChallengeDetail";
+import Admin from "./pages/Admin";
+
 
 
 import Index from "./pages/Index.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import BaseTemplate from "./pages/BaseTemplate.jsx";
 // import LoginPage from "./pages/LoginPage.jsx";
@@ -27,6 +32,8 @@ root.render(
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route path="/challenge/:id" element={<ChallengeDetail/>}/>
         <Route path="/feed" element={<Feed />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<Admin />} />
