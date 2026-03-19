@@ -1,0 +1,22 @@
+.chip {
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+
+    background: var(--color-surface-soft);
+    box-shadow: var(--shadow-inner);
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* active */
+.chip-active {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: var(--shadow-soft);
+}
+
+/* hover */
+.chip:hover {
+    transform: translateY(-1px);
+}
