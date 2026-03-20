@@ -5,6 +5,7 @@ import Button from "../../components/ui/Button/Button";
 import CreateChallengeModal from "../../components/CreateChallengeModal";
 
 import { useUser } from "../../context/UserContext";
+import "./Feed.css";
 
 export default function Feed() {
   const [challenges, setChallenges] = useState([]);
