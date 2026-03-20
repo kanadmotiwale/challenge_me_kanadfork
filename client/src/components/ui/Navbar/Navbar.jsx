@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/UserContext";
 import Button from "../Button/Button";
 import "./Navbar.css";
+import PropTypes from "prop-types";
 
 export default function Navbar({ user }) {
   const navigate = useNavigate();
@@ -45,3 +46,9 @@ export default function Navbar({ user }) {
     </div>
   );
 }
+
+StepProgress.propTypes = {
+  steps: PropTypes.array,
+  challengeId: PropTypes.any,
+  isEditable: PropTypes.bool,
+};

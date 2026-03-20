@@ -1,5 +1,5 @@
 import "./XPBar.css";
-
+import PropTypes from "prop-types";
 export default function XPBar({ xp, level }) {
   const currentLevelXP = (level - 1) * 100;
   const nextLevelXP = level * 100;
@@ -15,11 +15,13 @@ export default function XPBar({ xp, level }) {
       </div>
 
       <div className="xp-bar">
-        <div
-          className="xp-fill"
-          style={{ width: `${progress}%` }}
-        />
+        <div className="xp-fill" style={{ width: `${progress}%` }} />
       </div>
     </div>
   );
 }
+
+XPBar.propTypes = {
+  xp: PropTypes.number.isRequired,
+  level: PropTypes.number.isRequired,
+};

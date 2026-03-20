@@ -104,12 +104,13 @@ export default function StepProgress({ steps, challengeId, isEditable }) {
 
             {/* CONTENT */}
             <div className="step-content">
-              <div
-                className={`step-title ${!isEditable ? "disabled" : ""}`}
-                onClick={() => toggle(step.id)}
-              >
+              <div className={`step-title ${!isEditable ? "disabled" : ""}`}>
                 {step.title}
                 <span className="xp">+{step.points} XP</span>
+
+                <Button variant="primary" onClick={() => toggle(step.id)}>
+                  Expand to Update
+                </Button>
               </div>
 
               {expanded === step.id && isEditable && (
@@ -143,3 +144,9 @@ export default function StepProgress({ steps, challengeId, isEditable }) {
     </div>
   );
 }
+
+StepProgress.propTypes = {
+  steps: PropTypes.array.isRequired,
+  challengeId: PropTypes.any.isRequired,
+  isEditable: PropTypes.bool,
+};

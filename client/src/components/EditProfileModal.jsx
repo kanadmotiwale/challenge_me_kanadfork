@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DangerZoneModal from "./DeleteModal";
+import PropTypes from "prop-types";
 
 const fields = [
   { name: "username", label: "Username", type: "text" },
@@ -140,3 +141,9 @@ export default function EditProfileModal({ user, onClose, onUserUpdate }) {
     </div>
   );
 }
+
+EditProfileModal.propTypes = {
+  user: PropTypes.any.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onUserUpdate: PropTypes.func,
+};
