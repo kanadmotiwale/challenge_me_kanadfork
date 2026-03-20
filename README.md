@@ -58,6 +58,8 @@ Full user registration and login flow using Passport.js local strategy. Password
 ### Challenges
 
 Users can create challenges, send them to other users, and track whether they've been accepted, completed, or declined.
+Update feature for Challenges works by editing the Steps in the Challenge, in the Feed page, 
+Go to Feed-> Click on a Challenge -> and then expand the steps -> and click complete
 
 ### User Profiles
 
