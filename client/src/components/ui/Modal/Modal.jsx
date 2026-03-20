@@ -1,23 +1,13 @@
 import "./Modal.css";
-import Button from "../Button/Button";
+import PropTypes from "prop-types";
 
-export default function Modal({
-  title,
-  children,
-  onClose,
-  footer,
-}) {
+export default function Modal({ title, children, onClose, footer }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
-
-      <div
-        className="modal-box"
-        onClick={(e) => e.stopPropagation()}
-      >
-
+      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
         {/* HEADER */}
         {title && (
-          <div className="modal-header">
+          <div className="modal-local-header">
             <h3>{title}</h3>
 
             <div className="modal-close" onClick={onClose}>
@@ -27,18 +17,18 @@ export default function Modal({
         )}
 
         {/* BODY */}
-        <div className="modal-body">
-          {children}
-        </div>
+        <div className="modal-body">{children}</div>
 
         {/* FOOTER */}
-        {footer && (
-          <div className="modal-footer">
-            {footer}
-          </div>
-        )}
-
+        {footer && <div className="modal-local-footer">{footer}</div>}
       </div>
     </div>
   );
 }
+
+Modal.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node,
+  onClose: PropTypes.func.isRequired,
+  footer: PropTypes.node,
+};

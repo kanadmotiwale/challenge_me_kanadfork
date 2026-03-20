@@ -2,13 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/UserContext";
 import Button from "../Button/Button";
 import "./Navbar.css";
+import PropTypes from "prop-types";
 
 export default function Navbar({ user }) {
   const navigate = useNavigate();
   const { logout } = useUser();
 
   return (
-    <div className="navbar soft-card">
+    <div className="local-navbar soft-card">
       <div className="nav-logo" onClick={() => navigate("/feed")}>
         ChallengeMe
       </div>

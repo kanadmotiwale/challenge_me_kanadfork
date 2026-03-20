@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DangerZoneModal from "./DeleteModal";
+import PropTypes from "prop-types";
 
 const fields = [
   { name: "username", label: "Username", type: "text" },
@@ -63,7 +64,7 @@ export default function EditProfileModal({ user, onClose, onUserUpdate }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="modal-content">
-          <div className="modal-header">
+          <div className="modal-local-header">
             <h5 className="modal-title">Edit Profile</h5>
             <button className="btn-close" onClick={onClose} />
           </div>
@@ -140,3 +141,9 @@ export default function EditProfileModal({ user, onClose, onUserUpdate }) {
     </div>
   );
 }
+
+EditProfileModal.propTypes = {
+  user: PropTypes.any.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onUserUpdate: PropTypes.func,
+};

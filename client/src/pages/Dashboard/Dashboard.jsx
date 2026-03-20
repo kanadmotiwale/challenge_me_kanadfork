@@ -9,12 +9,11 @@ import Badge from "../../components/ui/Badge/Badge";
 import "./Dashboard.css";
 
 export default function Dashboard() {
-  const { user, setProfile, profile, refreshUser } = useUser();
+  const { user, profile, refreshUser, setProfile } = useUser();
 
   const [savedChallenges, setSavedChallenges] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // FETCH SAVED CHALLENGES (from backend join)
   useEffect(() => {
     const fetchSaved = async () => {
       try {
@@ -65,10 +64,11 @@ export default function Dashboard() {
         credentials: "include",
       });
 
-      // update UI instantly
       setSavedChallenges((prev) =>
         prev.filter((c) => c._id.toString() !== challengeId)
       );
+
+      await refreshUser();
     } catch (err) {
       console.error(err);
     }
@@ -88,14 +88,13 @@ export default function Dashboard() {
     };
   };
 
-  const { progress, currentLevelXP, nextLevelXP } = getLevelProgress(
+  const { progress, nextLevelXP } = getLevelProgress(
     profile?.xp || 0,
     profile?.level || 1
   );
 
   return (
     <div className="dashboard-page">
-      {/* HEADER */}
       <div className="dashboard-header">
         <h1>Your Dashboard</h1>
         <p className="muted">
@@ -103,10 +102,8 @@ export default function Dashboard() {
         </p>
       </div>
 
-      {/* PROFILE */}
       <ProfileInfo user={user} onUserUpdate={refreshUser} />
 
-      {/* GAME STATS */}
       <div className="stats-grid">
         <Card>
           <h3>Challenges</h3>
@@ -155,7 +152,6 @@ export default function Dashboard() {
         </section>
       )}
 
-      {/* CHALLENGES GRID */}
       <section>
         <h2>Your Challenges</h2>
 
@@ -170,9 +166,8 @@ export default function Dashboard() {
             {savedChallenges.map((c) => (
               <ChallengeCard
                 key={c._id}
-                challenge={c}
+                challenge={{ ...c, saved: true }}
                 editableMode={true}
-                onImport={() => {}}
                 onRemove={handleRemove}
               />
             ))}

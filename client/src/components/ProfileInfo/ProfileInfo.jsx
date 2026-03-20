@@ -1,6 +1,7 @@
 import { useState } from "react";
 import EditProfileModal from "../EditProfileModal";
 import "./ProfileInfo.css";
+import PropTypes from "prop-types";
 
 export default function ProfileInfo({ user, onUserUpdate }) {
   const [showModal, setShowModal] = useState(false);
@@ -50,3 +51,8 @@ export default function ProfileInfo({ user, onUserUpdate }) {
     </div>
   );
 }
+
+ProfileInfo.propTypes = {
+  user: PropTypes.obj,
+  onUserUpdate: PropTypes.func,
+};

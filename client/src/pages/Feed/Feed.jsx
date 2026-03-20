@@ -5,6 +5,7 @@ import Button from "../../components/ui/Button/Button";
 import CreateChallengeModal from "../../components/CreateChallengeModal";
 
 import { useUser } from "../../context/UserContext";
+import "./Feed.css";
 
 export default function Feed() {
   const [challenges, setChallenges] = useState([]);
@@ -15,7 +16,7 @@ export default function Feed() {
   const [page, setPage] = useState(1);
   const PAGE_SIZE = 9;
 
-  const { profile, likedIds, setProfile } = useUser();
+  const { profile, likedIds, refreshUser } = useUser();
 
   useEffect(() => {
     fetch("/api/challenges", { credentials: "include" })
@@ -25,15 +26,13 @@ export default function Feed() {
 
   const filtered = challenges.filter((c) => {
     const matchCategory = filter === "All" || c.category === filter;
-
     const matchSearch = c.title.toLowerCase().includes(search.toLowerCase());
-
     return matchCategory && matchSearch;
   });
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
-
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
   const importChallenge = async (id) => {
     const alreadySaved = profile?.savedChallenges?.some(
       (c) => c.challengeId.toString() === id
@@ -46,17 +45,16 @@ export default function Feed() {
       credentials: "include",
     });
 
-    // update local profile state
-    const newEntry = {
-      challengeId: id,
-      status: "Not Started",
-      progress: [],
-    };
+    await refreshUser();
+  };
 
-    setProfile((prev) => ({
-      ...prev,
-      savedChallenges: [...(prev.savedChallenges || []), newEntry],
-    }));
+  const removeFromProfile = async (id) => {
+    await fetch(`/api/profile/challenge/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    await refreshUser();
   };
 
   const handleDelete = async (id) => {
@@ -83,6 +81,7 @@ export default function Feed() {
           setPage(1);
         }}
       />
+
       <div className="filter-bar-container">
         <div className="filter-bar">
           {["All", "food", "movies", "explore"].map((f) => (
@@ -97,13 +96,23 @@ export default function Feed() {
             />
           ))}
         </div>
+
         <Button size="sm" variant="primary" onClick={() => setShowCreate(true)}>
           Create
         </Button>
       </div>
 
       {showCreate && (
-        <CreateChallengeModal onClose={() => setShowCreate(false)} />
+        <CreateChallengeModal
+          onClose={() => setShowCreate(false)}
+          onCreated={async () => {
+            const res = await fetch("/api/challenges", {
+              credentials: "include",
+            });
+            const data = await res.json();
+            setChallenges(data.reverse());
+          }}
+        />
       )}
 
       <div className="feed-grid">
@@ -122,7 +131,8 @@ export default function Feed() {
                 key={c._id}
                 challenge={{ ...c, saved, liked }}
                 onImport={importChallenge}
-                onRemove={handleDelete}
+                onRemove={removeFromProfile}
+                onDelete={handleDelete}
               />
             );
           })

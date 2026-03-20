@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function Card({
   children,
   interactive = false,
@@ -19,3 +21,11 @@ export default function Card({
     </div>
   );
 }
+
+Card.propTypes = {
+  children: PropTypes.node,
+  interactive: PropTypes.bool,
+  selected: PropTypes.bool,
+  variant: PropTypes.string,
+  onClick: PropTypes.func,
+};

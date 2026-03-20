@@ -2,6 +2,7 @@ import { useState } from "react";
 import Modal from "./ui/Modal/Modal";
 import Button from "./ui/Button/Button";
 import ChallengeCard from "./ui/ChallengeCard/ChallengeCard";
+import PropTypes from "prop-types";
 
 import {
   categories,
@@ -129,7 +130,6 @@ export default function CreateChallengeModal({ onClose, onCreated }) {
             </select>
           </div>
 
-          {/* STEPS */}
           <div className="steps-builder">
             <h4>Steps</h4>
 
@@ -169,3 +169,8 @@ export default function CreateChallengeModal({ onClose, onCreated }) {
     </Modal>
   );
 }
+
+CreateChallengeModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  onCreated: PropTypes.func,
+};
