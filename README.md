@@ -166,7 +166,7 @@ Each user has a profile that tracks their challenge history, wins, and standing 
 
 #### [Presentation](https://docs.google.com/presentation/d/1AM67vtAuLJtoZfiFd_NoQXPYV75k2VGY3fLCp5zUSgA/edit?usp=sharing)
 
-#### [Demo](#)
+#### [Demo](https://drive.google.com/file/d/1MBGVpu46Opq3qm3dbDpSdtCC7UuOp7Pp/view?usp=sharing)
 
 ---
 
@@ -214,7 +214,8 @@ AI was used as a **development accelerator**, not a shortcut. All generated code
 ## 📝 License
 
 MIT License — see [LICENSE](./LICENSE) for details.
-Thanks to [Freekpik](https://www.flaticon.com/free-icons/goal) for the logo
+
+Thanks to [Freekpik](https://www.flaticon.com/free-icons/goal) for allowing us to use their logo for our thumbnail
 
 ---
 
