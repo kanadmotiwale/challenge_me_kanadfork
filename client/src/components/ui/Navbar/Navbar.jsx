@@ -8,7 +8,7 @@ export default function Navbar({ user }) {
   const { logout } = useUser();
 
   return (
-    <div className="navbar soft-card">
+    <div className="local-navbar soft-card">
       <div className="nav-logo" onClick={() => navigate("/feed")}>
         ChallengeMe
       </div>

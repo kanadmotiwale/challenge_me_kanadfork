@@ -89,6 +89,7 @@ export function UserProvider({ children }) {
         refreshUser,
         logout,
         loading,
+        setProfile,
       }}
     >
       {children}

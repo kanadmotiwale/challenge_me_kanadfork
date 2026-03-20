@@ -1,11 +1,11 @@
 import { Navigate } from "react-router-dom";
 import Navbar from "../ui/Navbar/Navbar";
 import { useUser } from "../../context/UserContext";
+import PropTypes from "prop-types";
 
 export default function PrivateLayout({ children }) {
   const { user, loading } = useUser();
 
-  // WAIT until context is ready
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -21,3 +21,7 @@ export default function PrivateLayout({ children }) {
     </>
   );
 }
+
+PrivateLayout.propTypes = {
+  children: PropTypes.node,
+};

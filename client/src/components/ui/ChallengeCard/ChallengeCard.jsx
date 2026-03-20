@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import Card from "../Card/Card";
 import Badge from "../Badge/Badge";
@@ -14,6 +15,7 @@ export default function ChallengeCard({
   onImport,
   editableMode = false,
   onRemove,
+  onUnsave,
 }) {
   const navigate = useNavigate();
 
@@ -32,8 +34,14 @@ export default function ChallengeCard({
     <Card interactive>
       <div className="challenge-card">
         <div className="challenge-header">
-          <h3 className="challenge-title clickable-title" onClick={goToDetail}>
-            {challenge.title}
+          <h3
+            className="challenge-title clickable-title"
+            title={challenge.title}
+            onClick={goToDetail}
+          >
+            {challenge.title?.length > 30
+              ? challenge.title.slice(0, 30) + "..."
+              : challenge.title}
           </h3>
 
           <div className="challenge-creator">
@@ -47,8 +55,8 @@ export default function ChallengeCard({
         </div>
 
         <p className="challenge-desc" title={challenge.description}>
-          {challenge.description?.length > 20
-            ? challenge.description.slice(0, 20) + "..."
+          {challenge.description?.length > 40
+            ? challenge.description.slice(0, 40) + "..."
             : challenge.description}
         </p>
 
@@ -63,40 +71,58 @@ export default function ChallengeCard({
 
           <div className="challenge-actions">
             <Button
-              variant="soft"
+              variant={liked ? "primary" : "soft"}
+              size="sm"
               onClick={(e) => {
                 e.stopPropagation();
                 setLiked((prev) => !prev);
                 setLikesCount((prev) => (liked ? prev - 1 : prev + 1));
               }}
             >
-              Like
+              {liked ? "Liked" : "Like"}
             </Button>
 
-            <Button
-              variant="soft"
-              onClick={(e) => {
-                e.stopPropagation();
-                onImport && onImport(challenge._id);
-              }}
-            >
-              Save
-            </Button>
-
-            {isOwner && (
+            {!editableMode && (
               <Button
-                variant="danger"
+                variant={challenge?.saved ? "primary" : "secondary"}
+                size="sm"
                 onClick={(e) => {
                   e.stopPropagation();
-                  onRemove && onRemove(challenge._id);
+
+                  if (challenge?.saved) {
+                    onRemove && onRemove(challenge._id);
+                  } else {
+                    onImport && onImport(challenge._id);
+                  }
                 }}
               >
-                Delete
+                {challenge?.saved ? "Saved" : "Save"}
               </Button>
             )}
+
+            {isOwner ||
+              (editableMode && (
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onRemove && onRemove(challenge._id);
+                  }}
+                >
+                  Delete
+                </Button>
+              ))}
           </div>
         </div>
       </div>
     </Card>
   );
 }
+
+ChallengeCard.propTypes = {
+  challenge: PropTypes.obj,
+  onImport: PropTypes.func,
+  onRemove: PropTypes.func,
+  editableMode: PropTypes.bool,
+};

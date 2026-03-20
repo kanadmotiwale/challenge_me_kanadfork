@@ -1,10 +1,7 @@
 import "./Avatar.css";
+import PropTypes from "prop-types";
 
-export default function Avatar({
-  src,
-  username = "",
-  size = 48,
-}) {
+export default function Avatar({ src, username = "", size = 48 }) {
   if (src) {
     return (
       <img
@@ -25,3 +22,9 @@ export default function Avatar({
     </div>
   );
 }
+
+Avatar.propTypes = {
+  src: PropTypes.string,
+  username: PropTypes.string,
+  size: PropTypes.number,
+};

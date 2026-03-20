@@ -21,6 +21,7 @@
 .btn-sm {
     padding: 6px 12px;
     font-size: 13px;
+    min-width: 64px;
 }
 
 .btn-md {
@@ -47,8 +48,9 @@
   ========================= */
 
 .btn-soft {
-    background: var(--color-surface-soft);
+    background: var(--color-surface);
     color: var(--color-primary-dark);
+    border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 /* =========================
@@ -56,58 +58,46 @@
   ========================= */
 
 .btn-secondary {
-    background: var(--color-surface);
+    background: #dfeee4;
     color: var(--color-primary-dark);
 }
 
-/* =========================
-     DANGER (CORAL TILE)
-  ========================= */
+
 
 .btn-danger {
     background: var(--color-danger);
     color: white;
 }
 
-/* =========================
-     GHOST
-  ========================= */
 
 .btn-ghost {
     background: transparent;
-    color: var(--color-primary-dark);
+    color: var(--color-muted);
     box-shadow: none;
 }
 
-/* =========================
-     HOVER (LIFT)
-  ========================= */
 
 .btn:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
 }
 
-/* =========================
-     ACTIVE (PRESS)
-  ========================= */
+.btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
 
 .btn:active:not(:disabled) {
     transform: translateY(1px) scale(0.97);
     box-shadow: var(--shadow-pressed);
 }
 
-/* =========================
-     DISABLED
-  ========================= */
 
 .btn:disabled {
     opacity: 0.55;
     cursor: not-allowed;
 
-    /* remove depth */
     box-shadow: none;
 
-    /* prevent hover movement */
     transform: none;
 }

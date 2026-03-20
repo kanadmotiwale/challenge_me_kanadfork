@@ -16,6 +16,12 @@
     font-size: 18px;
     font-weight: 600;
     line-height: 1.3;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .challenge-creator {
@@ -24,21 +30,20 @@
 }
 
 .challenge-desc {
+    color: var(--color-muted);
     font-size: 14px;
     line-height: 1.4;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .challenge-tags {
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
-}
-
-.challenge-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
 }
 
 .clickable-title {
@@ -70,13 +75,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto;
-    padding-top: var(--space-sm);
+    margin-top: 6px;
     border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.challenge-footer span {
+    font-size: 13px;
+    color: var(--color-muted);
 }
 
 
 .challenge-actions {
     display: flex;
-    gap: var(--space-xs);
+    gap: var(--space-sm);
 }

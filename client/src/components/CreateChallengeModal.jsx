@@ -129,7 +129,6 @@ export default function CreateChallengeModal({ onClose, onCreated }) {
             </select>
           </div>
 
-          {/* STEPS */}
           <div className="steps-builder">
             <h4>Steps</h4>
 

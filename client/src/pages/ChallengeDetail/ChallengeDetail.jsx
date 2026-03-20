@@ -41,27 +41,30 @@ export default function ChallengeDetail() {
   }
 
   return (
-    <div style={{ maxWidth: 800, margin: "auto" }}>
+    <div className="challenge-detail">
       <Card>
-        <h2>{challenge.title}</h2>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <Avatar
-            src={challenge.creator?.profileImageURL}
-            username={challenge.creator?.username}
-            size={40}
-          />
-          <div>{challenge.creator?.username}</div>
+        <div className="challenge-top">
+          <h2>{challenge.title}</h2>
+
+          <div className="challenge-creator-row">
+            <Avatar
+              src={challenge.creator?.profileImageURL}
+              username={challenge.creator?.username}
+              size={40}
+            />
+            <span>{challenge.creator?.username}</span>
+          </div>
+
+          <p className="challenge-desc">{challenge.description}</p>
+
+          <div className="challenge-tags">
+            <Badge variant="primary">{challenge.category}</Badge>
+            <Badge variant="soft">{challenge.neighborhood}</Badge>
+            <Badge variant="soft">{challenge.timeWindow}</Badge>
+          </div>
         </div>
 
-        <p>{challenge.description}</p>
-
-        <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-          <Badge variant="primary">{challenge.category}</Badge>
-          <Badge variant="soft">{challenge.neighborhood}</Badge>
-          <Badge variant="soft">{challenge.timeWindow}</Badge>
-        </div>
-
-        <div style={{ marginTop: 20 }}>
+        <div className="challenge-steps">
           <h4>Steps</h4>
 
           <StepProgress

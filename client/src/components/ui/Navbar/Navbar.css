@@ -1,4 +1,4 @@
-.navbar {
+.local-navbar {
     display: flex;
     justify-content: space-between;
     padding: var(--space-md);
@@ -8,6 +8,7 @@
 .nav-logo {
     font-weight: bold;
     cursor: pointer;
+    font-size: x-large;
 }
 
 .nav-links {

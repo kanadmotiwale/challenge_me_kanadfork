@@ -1,4 +1,5 @@
 import "./Button.css";
+import PropTypes from "prop-types";
 
 export default function Button({
   children,
@@ -20,3 +21,13 @@ export default function Button({
     </button>
   );
 }
+
+Button.propTypes = {
+  children: PropTypes.node,
+  variant: PropTypes.string,
+  size: PropTypes.string,
+  loading: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  type: PropTypes.string,
+};

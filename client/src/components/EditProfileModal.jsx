@@ -63,7 +63,7 @@ export default function EditProfileModal({ user, onClose, onUserUpdate }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="modal-content">
-          <div className="modal-header">
+          <div className="modal-local-header">
             <h5 className="modal-title">Edit Profile</h5>
             <button className="btn-close" onClick={onClose} />
           </div>

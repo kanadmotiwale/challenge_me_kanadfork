@@ -35,30 +35,36 @@
 }
 
 /* HEADER */
-.modal-header {
+.modal-local-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    padding: var(--space-md);
+    padding: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* BODY */
 .modal-body {
-    padding: var(--space-md);
-    max-height: 60vh;
+    padding: var(--space-lg);
+    max-height: 65vh;
     overflow-y: auto;
 }
 
 /* FOOTER */
-.modal-footer {
+.modal-local-footer {
     display: flex;
     justify-content: flex-end;
     gap: var(--space-sm);
 
-    padding: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
     border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.modal-local-footer .btn-primary {
+    min-width: 120px;
+    font-weight: 600;
+    box-shadow: var(--shadow-hover);
 }
 
 /* CLOSE BUTTON */
