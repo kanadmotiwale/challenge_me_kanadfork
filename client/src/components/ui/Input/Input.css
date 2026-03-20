@@ -1,0 +1,23 @@
+.input {
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--radius-md);
+
+    background: var(--color-surface-soft);
+    box-shadow: var(--shadow-inner);
+
+    transition: 0.2s;
+}
+
+/* focus */
+.input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-primary),
+        var(--shadow-inner);
+}
+
+/* error */
+.input-error {
+    box-shadow: 0 0 0 2px var(--color-danger),
+        var(--shadow-inner);
+}

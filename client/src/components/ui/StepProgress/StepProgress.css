@@ -1,0 +1,145 @@
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.steps-locked {
+    padding: var(--space-sm);
+    color: var(--color-muted);
+    font-size: 13px;
+}
+
+/* ROW */
+.step-row {
+    display: flex;
+    gap: var(--space-md);
+}
+
+/* LEFT TIMELINE */
+.step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* DOT */
+.step-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft), var(--shadow-inner);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+}
+
+/* COMPLETED */
+.step-dot.done {
+    background: var(--color-primary);
+    color: white;
+}
+
+/* CONNECTOR */
+.step-connector {
+    width: 2px;
+    height: 40px;
+    background: #ddd;
+    margin-top: 4px;
+}
+
+.step-connector.done {
+    background: var(--color-primary);
+}
+
+/* CONTENT */
+.step-content {
+    flex: 1;
+}
+
+/* TITLE */
+.step-title {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.step-title.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* XP */
+.xp {
+    margin-left: 8px;
+    font-size: 12px;
+    color: var(--color-muted);
+}
+
+/* EXPAND */
+.step-expand {
+    margin-top: var(--space-sm);
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-soft);
+}
+
+/* ACTIONS */
+.step-actions {
+    margin-top: var(--space-sm);
+}
+
+/* INPUT */
+.input {
+    width: 100%;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    border: none;
+    box-shadow: var(--shadow-inner);
+}
+
+/* ANIMATION */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.step-dot.pulse {
+    animation: pulse 0.4s ease;
+}
+
+.xp-float {
+    font-size: 12px;
+    color: var(--color-primary);
+    animation: floatUp 1s ease forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-5px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+}

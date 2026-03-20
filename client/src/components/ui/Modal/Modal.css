@@ -1,0 +1,85 @@
+/* OVERLAY */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+    /* subtle glass effect */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000;
+}
+
+.modal-content {
+    max-width: 1600px;
+}
+
+/* BOX */
+.modal-box {
+    width: 100%;
+    max-width: 900px;
+
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-soft), var(--shadow-inner);
+
+    display: flex;
+    flex-direction: column;
+
+    animation: modalFade 0.2s ease;
+}
+
+/* HEADER */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: var(--space-md);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* BODY */
+.modal-body {
+    padding: var(--space-md);
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+/* FOOTER */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+
+    padding: var(--space-md);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* CLOSE BUTTON */
+.modal-close {
+    background: var(--color-surface-soft);
+    border-radius: var(--radius-pill);
+    padding: 6px 10px;
+    cursor: pointer;
+
+    box-shadow: var(--shadow-inner);
+}
+
+/* ANIMATION */
+@keyframes modalFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
