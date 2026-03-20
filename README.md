@@ -214,6 +214,7 @@ AI was used as a **development accelerator**, not a shortcut. All generated code
 ## 📝 License
 
 MIT License — see [LICENSE](./LICENSE) for details.
+Thanks to [Freekpik](https://www.flaticon.com/free-icons/goal) for the logo
 
 ---
 
